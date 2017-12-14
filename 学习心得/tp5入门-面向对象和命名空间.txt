@@ -1,0 +1,78 @@
+tp5入门/面向对象和命名空间
+1 面向对象：
+1 php5特性：
+访问控制，抽象类和final方法；附加的魔术方法，接口，对象复制和类型约束
+2 伪变量：
+$this:(1)用$this调用对象中的其他方法
+(2)使用$this调用构造函数
+$this就是指当前对象
+3 继承
+php不支持多重继承，若定义方法时使用了final，则该方法不可被覆盖。可以通过 parent:: 来访问被覆盖的方法或属性。
+4 类名解析：
+自 PHP 5.5 起，关键词 class 也可用于类名的解析。使用 ClassName::class 你可以获取一个字符串，包含了类 ClassName 的完全限定名称。这对使用了 命名空间 的类尤其有用。
+** 接口**
+使用接口（interface），可以指定某个类必须实现哪些方法，但不需要定义这些方法的具体内容。
+接口是通过 interface 关键字来定义的，就像定义一个标准的类一样，但其中定义所有的方法都是空的。
+接口中定义的所有方法都必须是公有，这是接口的特性。
+http://php.net/manual/zh/language.oop5.interfaces.php
+5 类的自动加载：
+spl_autoload_register() 可以注册任意数量的自动加载器，当使用尚未定义的类和接口时会自动加载；
+_ aotoload函数也能自动加载类和接口
+*6 构造函数和析构函数
+Note: 如果子类中定义了构造函数则不会隐式调用其父类的构造函数。要执行父类的构造函数，需要在子类的构造函数中调用 parent:: _construct()。如果子类没有定义构造函数则会如同一个普通的类方法一样从父类继承（假如没有被定义为 private 的话）。*
+析构函数：
+<?php
+class MyDestructableClass {
+function __construct() {
+print "In constructor\n";
+$this->name = "MyDestructableClass";
+}
+function __destruct() {
+print "Destroying " . $this->name . "\n";
+}
+}
+$obj = new MyDestructableClass();
+?>
+和构造函数一样，父类的析构函数不会被引擎暗中调用。要执行父类的析构函数，必须在子类的析构函数体中显式调用 parent::_ _destruct()。此外也和构造函数一样，子类如果自己没有定义析构函数则会继承父类的。
+7 范围解析操作符
+范围解析操作符（也可称作 Paamayim Nekudotayim）或者更简单地说是一对冒号，可以用于访问静态成员，类常量，还可以用于覆盖类中的属性和方法。
+define和const的区别：可以用define()函数来定义常量。在php5.3.0以后，可以使用const关键字在类定义的外部定义常量，先前版本const关键字只能在类(class)中使用。一个常量一旦被定义，就不能再改变或取消定义。
+如果常量名是动态的，也可以用函数constant()来获取常量的值。用get_defined_contstants()可以获得所有已定义的常量列表。
+问：在php中定义常量时，const和define的区别？
+答：使用const使得代码简单易读，const本身就是一个语言结构，而define是一个函数。另外const在编译时要比define快很多。
+1、const用于类成员变量的定义，一经定义，不可修改。Define不可以用于类成员变量的定义，可用于全局常量。
+2、Const可在类中使用，define不能
+3、Const不能再条件语句中定义常量
+4、const采用普通的常量名称，define可以采用表达式作为名称
+5、const只能接受静态的标量，而define可以采用任何表达式
+6、const定义的常量时大小写敏感，而define可以通过第三个参数（为true表示大小写不敏感）来指定大小写是否敏感。
+const与static的区别
+6、const定义的常量时大小写敏感，而define可以通过第三个参数（为true表示大小写不敏感）来指定大小写是否敏感。
+class Test{
+const PATH = 'c/';//修饰常量
+public function ass(){
+echo $this::PATH.'
+';
+echo self::PATH.'
+';
+}
+}
+在类的内部，static修饰的方法体内部，无法访问当前类的任何普通成员变量，准确的来说是无法使用关键字$this，只可以使用当前类的静态成员变量，和类常量。
+使用static的过程中，调用的方法与调用static修饰的变量不同，既可以通过类名调用，也可以通过对象名调用
+#### 2 命名空间
+1 命名空间介绍：
+广义上来说，命名空间是一种封装事物的方法。
+当和命名空间结合起来时 declare 的唯一合法语法是 declare(encoding='...');
+2 命名空间和动态语言特征
+PHP 命名空间的实现受到其语言自身的动态特征的影响。
+3 namespace关键字和__namespace__常量
+PHP支持两种抽象的访问当前命名空间内部元素的方法，NAMESPACE 魔术常量和namespace关键字。
+常量__NAMESPACE__的值是包含当前命名空间名称的字符串。在全局的，不包括在任何命名空间中的代码，它包含一个空的字符串。关键字 namespace 可用来显式访问当前命名空间或子命名空间中的元素。它等价于类中的 self 操作符。
+4 名称解析规则
+命名空间名称定义
+非限定名称Unqualified name：
+名称中不包含命名空间分隔符的标识符，例如 Foo
+限定名称Qualified name：
+名称中含有命名空间分隔符的标识符，例如 Foo\Bar
+完全限定名称Fully qualified name：
+名称中包含命名空间分隔符，并以命名空间分隔符开始的标识符，例如 \Foo\Bar。 namespace\Foo 也是一个完全限定名称。
