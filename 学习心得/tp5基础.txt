@@ -1,0 +1,41 @@
+**1 安装**
+ 分为核心板和完整版，可以使用composer和git安装
+ 不安装服务器，可以进去tp5/public命令下运行如下命令：
+ php -S localhost:8888 router.php
+**2 关键路径**
+   项目根目录：tp5  ROOT_PATH
+   应用目录：tp5/application APP_PATH
+   框架核心：tp5/thinkphp THINK_PATH
+   应用扩展目录：tp5/extend EXTEND_PATH
+   composer扩展目录：tp5/vendor VENDOR_PATH
+**3 生成模块**
+`php think build --module demo`
+**4 trait**
+  自 PHP 5.4.0 起，PHP 实现了一种代码复用的方法，称为 trait。
+  Trait 是为类似 PHP 的单继承语言而准备的一种代码复用机制。Trait 为了减少单继承语言的限制，使开发人员能够自由地在不同层次结构内独立的类中复用 method。Trait 和 Class 组合的语义定义了一种减少复杂性的方式，避免传统多继承和 Mixin 类相关典型问题。
+  Trait 和 Class 相似，但仅仅旨在用细粒度和一致的方式来组合功能。 无法通过 trait 自身来实例化。它为传统继承增加了水平特性的组合；也就是说，应用的几个 Class 之间不需要继承。
+**5 模板渲染**
+    $this->assign('name', $name);
+        return $this->fetch();
+**6 URL访问**
+如果控制器是驼峰的，那么访问应该变成/index.php/index/hello_world/index 这种类型；系统会自动定位到HelloWorld控制器；
+如果要直接访问驼峰命名的控制器，需要设置为严格区分大小写，
+~~~
+// 关闭URL自动转换（支持驼峰访问控制器）
+'url_convert' => false,
+~~~
+ 以兼容方式访问：index.php?s=/index/Index/index
+**7 调用request**
+REQUEST对象是从客户端向服务器端发出请求，REQUEST的各种方法主要是用来处理客户端浏览器提交的请求中的各项参数和选项。ThinkPHP5的Request对象由think\Request类完成。
+调用方法：
+https://www.kancloud.cn/thinkphp/thinkphp5_quickstart/145255#_8
+系统提供了一个input助手函数来简化Request对象的param方法，用法如下：
+命名空间：use think/Request;
+方法：
+    public function hello(Request $request)
+    {
+        echo '请求参数：';
+        dump($request->param());
+        echo 'name:'.$request->param('name');
+    }
+   简便方法：input('get.') input('post.')
