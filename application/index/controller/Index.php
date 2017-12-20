@@ -20,9 +20,11 @@ class Index extends Controller
         $this->assign('content',$cont);
         $hot_rank = Db::name('blog')->order('praise desc')->limit('3')->select();
         $time_rank = Db::name('blog')->order('blog_time desc')->limit('3')->select();
+        $rank =  Db::name('users')->field('user_name,vip')->order('vip desc')->limit('5')->select();
         $this->assign('hot_rank',$hot_rank);
         $this->assign('login',$login);
         $this->assign('time_rank',$time_rank);
+        $this->assign('rank',$rank);
         return $this->fetch();
     }
 }
