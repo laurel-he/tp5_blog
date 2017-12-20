@@ -127,61 +127,61 @@
 
             <div class="games-grids">
                 <div class="game-grid-left">
-                    <volist name="content" id="cont" offset="0" length="1">
+                    {volist name="content" id="cont" offset="0" length="1"}
                         <div class="grid1">
                             <h5 class="act"><a href="{:url('single/single',array('id'=>1))}">{$cont.blog_group}</a></h5>
 
                             <img src="{$cont.blog_images}" class="img-responsive" alt=""/>
                             <div class="grid1-info">
                                 <h4><a href="{:url('single/single',array('id'=>1))}">{$cont['blog_name']}</a></h4>
-                                <p>{$cont[blog_content]|msubstr=0,62}</p>
+                                <p>{$cont['blog_content']|substr=0,62}</p>
                             </div>
                             <div class="more">
                                 <a href="{:url('single/single',array('id'=>1))}">{$Think.lang.read_more}</a>
                             </div>
                         </div>
-                    </volist>
-                    <volist name="content" id="cont2" offset="1" length="1">
+                    {/volist}
+                    {volist name="content" id="cont2" offset="1" length="1"}
                         <div class="grid2">
                             <h5 class="race"><a href="{:url('single/single',array('id'=>2))}">{$cont2['blog_group']}</a></h5>
                             <img src="{$cont2['blog_images']}" class="img-responsive" alt=""/>
                             <div class="grid1-info">
-                                <h4><a href="{:U('Single/single',array('id'=>2))}">{$cont2.blog_name}</a></h4>
-                                <p>{$cont2[blog_content]|substr=0,62}</p>
+                                <h4><a href="{:url('single/single',array('id'=>2))}">{$cont2.blog_name}</a></h4>
+                                <p>{$cont2['blog_content']|substr=0,62}</p>
                             </div>
                             <div class="more">
-                                <a href="{:U('Single/single',array('id'=>2))}">{$Think.lang.read_more}</a>
+                                <a href="{:url('single/single',array('id'=>2))}">{$Think.lang.read_more}</a>
                             </div>
                         </div>
                 </div>
-                </volist>
+                {/volist}
                 <div class="game-grid-right">
-                    <volist name="content" id="cont3" offset="2" length="1">
+                    {volist name="content" id="cont3" offset="2" length="1"}
                         <div class="grid3">
-                            <h5 class="sport"><a href="{:U('Single/single',array('id'=>3))}">{$cont3['blog_group']}</a></h5>
+                            <h5 class="sport"><a href="{:url('single/single',array('id'=>3))}">{$cont3['blog_group']}</a></h5>
                             <img src="{$cont3.blog_images}" class="img-responsive" alt=""/>
                             <div class="grid1-info">
-                                <h4><a href="{:U('Single/single',array('id'=>3))}">{$cont3.blog_name}</a></h4>
+                                <h4><a href="{:url('single/single',array('id'=>3))}">{$cont3.blog_name}</a></h4>
                                 <p>{$cont3.blog_content|substr=0,64}</p>
                             </div>
                             <div class="more">
-                                <a href="{:U('Single/single',array('id'=>3))}">{$Think.lang.read_more}</a>
+                                <a href="{:url('single/single',array('id'=>3))}">{$Think.lang.read_more}</a>
                             </div>
                         </div>
-                    </volist>
-                    <volist name="content" id="cont4" offset="3" length="1">
+                    {/volist}
+                    {volist name="content" id="cont4" offset="3" length="1"}
                         <div class="grid4">
-                            <h5 class="arc"><a href="{:U('Single/single',array('id'=>4))}">{$cont4['blog_group']}</a></h5>
+                            <h5 class="arc"><a href="{:url('single/single',array('id'=>4))}">{$cont4['blog_group']}</a></h5>
                             <img src="{$cont4.blog_images}" class="img-responsive" alt=""/>
                             <div class="grid1-info">
-                                <h4><a href="{:U('Single/single',array('id'=>4))}">{$cont4.blog_name}</a></h4>
+                                <h4><a href="{:url('single/single',array('id'=>4))}">{$cont4.blog_name}</a></h4>
                                 <p>{$cont4.blog_content|substr=0,64}</p>
                             </div>
                             <div class="more">
-                                <a href="{:U('Single/single',array('id'=>4))}">{$Think.lang.read_more}</a>
+                                <a href="{:url('single/single',array('id'=>4))}">{$Think.lang.read_more}</a>
                             </div>
                         </div>
-                    </volist>
+                    {/volist}
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -196,44 +196,44 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active re-pad2" id="home">
-                    <volist name='hot_rank' id='hot'>
+                    {volist name='hot_rank' id='hot'}
                         <div class="game1">
                             <div class="col-md-3 tab-pic">
-                                <a href="{:U('Single/single',array('id'=>$hot['blog_id']))}"><img src="{$hot.blog_images}" alt="/" class="img-responsive"></a>
+                                <a href="{:url('single/single',array('id'=>$hot['blog_id']))}"><img src="{$hot.blog_images}" alt="/" class="img-responsive"></a>
                             </div>
                             <div class="col-md-9 tab-pic-info">
-                                <h4><a href="{:U('Single/single',array('id'=>$hot['blog_id']))}">{$hot.blog_name}</a></h4>
+                                <h4><a href="{:url('single/single',array('id'=>$hot['blog_id']))}">{$hot.blog_name}</a></h4>
                                 <p>{$hot.blog_content|substr=0,30}</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                    </volist>
+                    {/volist}
                 </div>
                 <div role="tabpanel" class="tab-pane re-pad2" id="profile">
 
-                    <volist name="time_rank" id="time">
+                    {volist name="time_rank" id="time">}
                         <div class="game-post">
                             <div class="col-md-3 tab-pic">
-                                <a href="{:U('Single/single',array('id'=>$time['blog_id']))}"><img src="{$time.blog_images}" alt="/" class="img-responsive"></a>
+                                <a href="{:url('single/single',array('id'=>$time['blog_id']))}"><img src="{$time.blog_images}" alt="/" class="img-responsive"></a>
                             </div>
                             <div class="col-md-9 tab-post-info">
-                                <h4><a href="{:U('Single/single',array('id'=>$time['blog_id']))}">{$time.blog_name}</a></h4>
+                                <h4><a href="{:url('single/single',array('id'=>$time['blog_id']))}">{$time.blog_name}</a></h4>
                                 <p>Posted By <a href="#">{$time.blog_author}</a> &nbsp;&nbsp; on {$time.blog_time|strtotime|date='Y-m-d H:i:s',###} &nbsp;&nbsp; <a href="#">Comments (10)</a></p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                    </volist>
+                    {/volist}
                 </div>
             </div>
             <!---->
             <div class="category blog-ctgry">
                 <h4>{$Think.lang.rank}</h4>
                 <div class="list-group">
-                    <volist name="rank" id="rank_list">
-                        <a href="#" class="list-group-item">{$rank_list[user_name]}</a>
-                        <a href="#" class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------{$rank_list[vip]}级会员
+                    {volist name="rank" id="rank_list"}
+                        <a href="#" class="list-group-item">{$rank_list['user_name']}</a>
+                        <a href="#" class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------{$rank_list['vip']}级会员
                         </a>
-                    </volist>
+                    {/volist}
                 </div>
             </div>
             <div class="photo-gallery">

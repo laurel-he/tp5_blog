@@ -16,6 +16,8 @@ class Index extends Controller
         {
             $login = "请先登陆";
         }
+        $cont = Db::name('blog')->select();
+        $this->assign('content',$cont);
         $hot_rank = Db::name('blog')->order('praise desc')->limit('3')->select();
         $time_rank = Db::name('blog')->order('blog_time desc')->limit('3')->select();
         $this->assign('hot_rank',$hot_rank);
