@@ -1,6 +1,12 @@
 
 {include file='../application/common/header.html' /}
 <!-- header -->
+<textarea onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden" rows="3"></textarea>
+<script type="text/javascript">
+    function MaxMe(o) {
+        o.style.height = o.scrollTop + o.scrollHeight + "px";
+    }
+</script>
 <div class="banner">
     <div class="container">
         <div class="headr-right">
@@ -52,6 +58,7 @@
                         <!--/navbar collapse-->
                     </nav>
                     <!--/navbar-->
+                    tea
                 </div>
                 <div class="clearfix"></div>
             </div>
